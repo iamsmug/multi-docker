@@ -20,3 +20,17 @@ after_success:
   - docker push iamsmug/multi-nginx
   - docker push iamsmug/multi-server
   - docker push iamsmug/multi-worker
+
+deploy:
+  provider: elastibeanstalk
+  region: us-east-2
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-us-east-2-723762033082
+  bucket_path: docker-multi
+  on:
+    brach: master
+  access_key_id:
+    secure: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
